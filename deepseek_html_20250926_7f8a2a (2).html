@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Motors - Vehículos de Alta Gama</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Variables y estilos generales */
+        :root {
+            --primary: #000000;
+            --secondary: #C00A0A;
+            --accent: #D4AF37;
+            --light: #FFFFFF;
+            --dark: #1A1A1A;
+            --gray: #333333;
+            --light-gray: #F5F5F5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            position: relative;
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        nav ul li a i {
+            margin-left: 5px;
+            font-size: 12px;
+        }
+        
+        /* Dropdown Menu */
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--light);
+            min-width: 200px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 4px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+        
+        nav ul li:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .dropdown-menu a {
+            color: var(--dark) !important;
+            padding: 12px 20px;
+            display: block;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .dropdown-menu a:hover {
+            background-color: var(--light-gray);
+            color: var(--secondary) !important;
+        }
+        
+        .dropdown-menu a:last-child {
+            border-bottom: none;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1535732820275-9ffd998cac22?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 70vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--light);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--light);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #a00808;
+            transform: translateY(-2px);
+        }
+        
+        /* Secciones */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Vehículos Section */
+        .vehicles {
+            background-color: var(--light);
+        }
+        
+        .category-title {
+            font-size: 28px;
+            margin: 60px 0 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--secondary);
+            color: var(--dark);
+        }
+        
+        .vehicles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        
+        .vehicle-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .vehicle-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .vehicle-image {
+            height: 220px;
+            overflow: hidden;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .vehicle-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .vehicle-card:hover .vehicle-image img {
+            transform: scale(1.1);
+        }
+        
+        .vehicle-info {
+            padding: 25px;
+        }
+        
+        .vehicle-info h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        
+        .vehicle-info .price {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .vehicle-info .features {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+        
+        .vehicle-info .features span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* Ofertas Section */
+        .offers {
+            background-color: var(--light-gray);
+        }
+        
+        .offer-badge {
+            background-color: var(--secondary);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: var(--light);
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 20px;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--gray);
+            color: var(--light);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid var(--gray);
+            font-size: 14px;
+            color: #999;
+        }
+        
+        /* Botón de WhatsApp */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Páginas de categorías */
+        .category-page {
+            display: none;
+            padding: 80px 0;
+        }
+        
+        .category-page.active {
+            display: block;
+        }
+        
+        .back-btn {
+            display: inline-block;
+            background-color: var(--gray);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            margin-bottom: 30px;
+            transition: background-color 0.3s;
+        }
+        
+        .back-btn:hover {
+            background-color: var(--dark);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-direction: column;
+                display: none;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .dropdown-menu {
+                position: static;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                box-shadow: none;
+                display: none;
+                width: 100%;
+            }
+            
+            nav ul li:hover .dropdown-menu {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 18px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+            
+            .vehicles-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .mobile-menu {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Botón de WhatsApp -->
+    <a href="https://wa.me/3152725402?text=Hola,%20me%20interesa%20obtener%20más%20información%20sobre%20sus%20vehículos" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Encabezado -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo" onclick="showPage('inicio')">LUXURY<span>MOTORS</span></a>
+            <div class="mobile-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" onclick="showPage('inicio')">Inicio</a></li>
+                    <li>
+                        <a href="#" onclick="showPage('ferrari-deportivos')">Ferrari <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="#" onclick="showPage('ferrari-deportivos')">Deportivos</a>
+                            <a href="#" onclick="showPage('ferrari-suv')">SUV</a>
+                            <a href="#" onclick="showPage('ferrari-limited')">Ediciones Limitadas</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showPage('lamborghini-deportivos')">Lamborghini <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="#" onclick="showPage('lamborghini-deportivos')">Deportivos</a>
+                            <a href="#" onclick="showPage('lamborghini-suv')">SUV</a>
+                            <a href="#" onclick="showPage('lamborghini-limited')">Ediciones Limitadas</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="#" onclick="showPage('mclaren-deportivos')">McLaren <i class="fas fa-chevron-down"></i></a>
+                        <div class="dropdown-menu">
+                            <a href="#" onclick="showPage('mclaren-deportivos')">Deportivos</a>
+                            <a href="#" onclick="showPage('mclaren-gt')">Grand Tourer</a>
+                            <a href="#" onclick="showPage('mclaren-limited')">Ediciones Limitadas</a>
+                        </div>
+                    </li>
+                    <li><a href="#" onclick="showPage('motos')">Motos</a></li>
+                    <li><a href="#" onclick="showPage('ofertas')">Ofertas</a></li>
+                    <li><a href="#" onclick="showPage('nuevos')">Nuevos Lanzamientos</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Página de Inicio -->
+    <div id="inicio" class="category-page active">
+        <!-- Sección Hero -->
+        <section class="hero">
+            <div class="container hero-content">
+                <h1>VEHÍCULOS DE ALTA GAMA</h1>
+                <p>Descubre la excelencia en automóviles y motos de lujo: Ferrari, Lamborghini, McLaren, Ducati y más</p>
+                <a href="#" class="btn" onclick="showPage('vehiculos')">Explorar Colección</a>
+            </div>
+        </section>
+
+        <!-- Sección Vehículos Destacados -->
+        <section class="vehicles" id="vehiculos">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Vehículos Destacados</h2>
+                    <p>Selección exclusiva de los modelos más codiciados</p>
+                </div>
+                
+                <div class="vehicles-grid">
+                    <!-- Ferrari SF90 Stradale -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Ferrari SF90 Stradale">
+                        </div>
+                        <div class="vehicle-info">
+                            <h3>Ferrari SF90 Stradale</h3>
+                            <div class="price">$625,000</div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 340 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 1000 CV</span>
+                                <span><i class="fas fa-car"></i> Híbrido</span>
+                            </div>
+                            <p>El primer Ferrari híbrido enchufable que combina rendimiento extremo y eficiencia.</p>
+                            <a href="#" class="btn" style="margin-top: 15px; display: inline-block;" onclick="showPage('ferrari-deportivos')">Ver Modelos</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Lamborghini Revuelto -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Lamborghini Revuelto">
+                        </div>
+                        <div class="vehicle-info">
+                            <h3>Lamborghini Revuelto</h3>
+                            <div class="price">$600,000</div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 350 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 1015 CV</span>
+                                <span><i class="fas fa-car"></i> Híbrido V12</span>
+                            </div>
+                            <p>El sucesor del Aventador, con un sistema híbrido de altas prestaciones.</p>
+                            <a href="#" class="btn" style="margin-top: 15px; display: inline-block;" onclick="showPage('lamborghini-deportivos')">Ver Modelos</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Ducati Panigale V4 -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80" alt=" Ducati Panigale V4">
+                        </div>
+                        <div class="vehicle-info">
+                            <h3>Ducati Panigale V4 R</h3>
+                            <div class="price">$45,000</div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 320 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 221 CV</span>
+                                <span><i class="fas fa-motorcycle"></i> Deportiva</span>
+                            </div>
+                            <p>La moto de serie más extrema de Ducati, heredera de la tecnología MotoGP.</p>
+                            <a href="#" class="btn" style="margin-top: 15px; display: inline-block;" onclick="showPage('motos')">Ver Modelos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Página Ferrari Deportivos -->
+    <div id="ferrari-deportivos" class="category-page">
+        <section class="vehicles">
+            <div class="container">
+                <a href="#" class="back-btn" onclick="showPage('inicio')"><i class="fas fa-arrow-left"></i> Volver al Inicio</a>
+                <h2 class="category-title">Ferrari - Deportivos</h2>
+                
+                <div class="vehicles-grid">
+                    <!-- Ferrari 296 GTB -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Ferrari 296 GTB">
+                        </div>
+                        <div class="vehicle-info">
+                            <h3>Ferrari 296 GTB</h3>
+                            <div class="price">$320,000</div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 330 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 830 CV</span>
+                                <span><i class="fas fa-car"></i> V6 Híbrido</span>
+                            </div>
+                            <p>Nuevo Berlinetta con motor V6 turbo híbrido, el más potente de su cilindrada.</p>
+                            <a href="#contacto" class="btn" style="margin-top: 15px; display: inline-block;">Consultar</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Ferrari F8 Tributo -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1592198084033-aade902d1aae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Ferrari F8 Tributo">
+                        </div>
+                        <div class="vehicle-info">
+                            <h3>Ferrari F8 Tributo</h3>
+                            <div class="price">$280,000</div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 340 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 720 CV</span>
+                                <span><i class="fas fa-car"></i> V8 Turbo</span>
+                            </div>
+                            <p>El heredero del 488 GTB con mejoras aerodinámicas y mayor potencia.</p>
+                            <a href="#contacto" class="btn" style="margin-top: 15px; display: inline-block;">Consultar</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Ferrari Roma -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Ferrari Roma">
+                        </div>
+                        <div class="vehicle-info">
+                            <h3>Ferrari Roma</h3>
+                            <div class="price">$247,000</div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 320 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 620 CV</span>
+                                <span><i class="fas fa-car"></i> V8 Turbo</span>
+                            </div>
+                            <p>Elegante coupé que representa el concepto de "Dolce Vita".</p>
+                            <a href="#contacto" class="btn" style="margin-top: 15px; display: inline-block;">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Página Ferrari SUV -->
+    <div id="ferrari-suv" class="category-page">
+        <section class="vehicles">
+            <div class="container">
+                <a href="#" class="back-btn" onclick="showPage('inicio')"><i class="fas fa-arrow-left"></i> Volver al Inicio</a>
+                <h2 class="category-title">Ferrari - SUV</h2>
+                
+                <div class="vehicles-grid">
+                    <!-- Ferrari Purosangue -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Ferrari Purosangue">
+                        </div>
+                        <div class="vehicle-info">
+                            <h3>Ferrari Purosangue</h3>
+                            <div class="price">$390,000</div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 310 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 725 CV</span>
+                                <span><i class="fas fa-car"></i> V12 SUV</span>
+                            </div>
+                            <p>El primer SUV de Ferrari, con motor V12 naturalmente aspirado.</p>
+                            <a href="#contacto" class="btn" style="margin-top: 15px; display: inline-block;">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Página Ferrari Ediciones Limitadas -->
+    <div id="ferrari-limited" class="category-page">
+        <section class="vehicles">
+            <div class="container">
+                <a href="#" class="back-btn" onclick="showPage('inicio')"><i class="fas fa-arrow-left"></i> Volver al Inicio</a>
+                <h2 class="category-title">Ferrari - Ediciones Limitadas</h2>
+                
+                <div class="vehicles-grid">
+                    <!-- Ferrari Daytona SP3 -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Ferrari Daytona SP3">
+                        </div>
+                        <div class="vehicle-info">
+                            <h3>Ferrari Daytona SP3</h3>
+                            <div class="price">$2,200,000</div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 340 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 840 CV</span>
+                                <span><i class="fas fa-car"></i> V12</span>
+                            </div>
+                            <p>Homenaje a los deportivos que dominaron Daytona en los años 60.</p>
+                            <a href="#contacto" class="btn" style="margin-top: 15px; display: inline-block;">Consultar</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Ferrari Monza SP1 -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Ferrari Monza SP1">
+                        </div>
+                        <div class="vehicle-info">
+                            <h3>Ferrari Monza SP1</h3>
+                            <div class="price">$1,750,000</div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 300 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 810 CV</span>
+                                <span><i class="fas fa-car"></i> Barchetta</span>
+                            </div>
+                            <p>Edición limitada inspirada en los sports cars de los años 50.</p>
+                            <a href="#contacto" class="btn" style="margin-top: 15px; display: inline-block;">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Página Lamborghini Deportivos -->
+    <div id="lamborghini-deportivos" class="category-page">
+        <section class="vehicles">
+            <div class="container">
+                <a href="#" class="back-btn" onclick="showPage('inicio')"><i class="fas fa-arrow-left"></i> Volver al Inicio</a>
+                <h2 class="category-title">Lamborghini - Deportivos</h2>
+                
+                <div class="vehicles-grid">
+                    <!-- Lamborghini Huracán STO -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1544829099-b9a0c07fad1a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Lamborghini Huracán STO">
+                        </div>
+                        <div class="vehicle-info">
+                            <h3>Lamborghini Huracán STO</h3>
+                            <div class="price">$327,000</div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 310 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 640 CV</span>
+                                <span><i class="fas fa-car"></i> V10</span>
+                            </div>
+                            <p>Versión de circuito homologada para carretera, inspirada en el Super Trofeo.</p>
+                            <a href="#contacto" class="btn" style="margin-top: 15px; display: inline-block;">Consultar</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Lamborghini Huracán Tecnica -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1507136566006-cfc505b114fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2071&q=80" alt="Lamborghini Huracán Tecnica">
+                        </div>
+                        <div class="vehicle-info">
+                            <h3>Lamborghini Huracán Tecnica</h3>
+                            <div class="price">$274,000</div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 325 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 640 CV</span>
+                                <span><i class="fas fa-car"></i> V10</span>
+                            </div>
+                            <p>El equilibrio perfecto entre rendimiento en circuito y vida cotidiana.</p>
+                            <a href="#contacto" class="btn" style="margin-top: 15px; display: inline-block;">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Página Lamborghini SUV -->
+    <div id="lamborghini-suv" class="category-page">
+        <section class="vehicles">
+            <div class="container">
+                <a href="#" class="back-btn" onclick="showPage('inicio')"><i class="fas fa-arrow-left"></i> Volver al Inicio</a>
+                <h2 class="category-title">Lamborghini - SUV</h2>
+                
+                <div class="vehicles-grid">
+                    <!-- Lamborghini Urus -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Lamborghini Urus">
+                        </div>
+                        <div class="vehicle-info">
+                            <h3>Lamborghini Urus</h3>
+                            <div class="price">$218,000</div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 305 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 650 CV</span>
+                                <span><i class="fas fa-car"></i> SUV</span>
+                            </div>
+                            <p>El primer Super SUV que combina el alma de un superdeportivo.</p>
+                            <a href="#contacto" class="btn" style="margin-top: 15px; display: inline-block;">Consultar</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Lamborghini Urus Performante -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Lamborghini Urus Performante">
+                        </div>
+                        <div class="vehicle-info">
+                            <h3>Lamborghini Urus Performante</h3>
+                            <div class="price">$260,000</div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 306 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 666 CV</span>
+                                <span><i class="fas fa-car"></i> SUV</span>
+                            </div>
+                            <p>Versión más extrema del Urus, con mayor potencia y menor peso.</p>
+                            <a href="#contacto" class="btn" style="margin-top: 15px; display: inline-block;">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Página Lamborghini Ediciones Limitadas -->
+    <div id="lamborghini-limited" class="category-page">
+        <section class="vehicles">
+            <div class="container">
+                <a href="#" class="back-btn" onclick="showPage('inicio')"><i class="fas fa-arrow-left"></i> Volver al Inicio</a>
+                <h2 class="category-title">Lamborghini - Ediciones Limitadas</h2>
+                
+                <div class="vehicles-grid">
+                    <!-- Lamborghini Sian -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Lamborghini Sian">
+                        </div>
+                        <div class="vehicle-info">
+                            <h3>Lamborghini Sian FKP 37</h3>
+                            <div class="price">$3,600,000</div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 350 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 819 CV</span>
+                                <span><i class="fas fa-car"></i> Híbrido</span>
+                            </div>
+                            <p>El primer Lamborghini híbrido, con tecnología de supercondensadores.</p>
+                            <a href="#contacto" class="btn" style="margin-top: 15px; display: inline-block;">Consultar</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Lamborghini Countach LPI 800-4 -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Lamborghini Countach">
+                        </div>
+                        <div class="vehicle-info">
+                            <h3>Lamborghini Countach LPI 800-4</h3>
+                            <div class="price">$2,640,000</div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 355 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 814 CV</span>
+                                <span><i class="fas fa-car"></i> Híbrido V12</span>
+                            </div>
+                            <p>Homenaje moderno al icónico Countach original de los años 70.</p>
+                            <a href="#contacto" class="btn" style="margin-top: 15px; display: inline-block;">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Página McLaren Deportivos -->
+    <div id="mclaren-deportivos" class="category-page">
+        <section class="vehicles">
+            <div class="container">
+                <a href="#" class="back-btn" onclick="showPage('inicio')"><i class="fas fa-arrow-left"></i> Volver al Inicio</a>
+                <h2 class="category-title">McLaren - Deportivos</h2>
+                
+                <div class="vehicles-grid">
+                    <!-- McLaren 720S -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="McLaren 720S">
+                        </div>
+                        <div class="vehicle-info">
+                            <h3>McLaren 720S</h3>
+                            <div class="price">$299,000</div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 341 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 720 CV</span>
+                                <span><i class="fas fa-car"></i> V8 Biturbo</span>
+                            </div>
+                            <p>Un superdeportivo que redefine los límites del rendimiento.</p>
+                            <a href="#contacto" class="btn" style="margin-top: 15px; display: inline-block;">Consultar</a>
+                        </div>
+                    </div>
+                    
+                    <!-- McLaren 765LT -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="McLaren 765LT">
+                        </div>
+                        <div class="vehicle-info">
+                            <h3>McLaren 765LT</h3>
+                            <div class="price">$358,000</div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 330 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 765 CV</span>
+                                <span><i class="fas fa-car"></i> V8 Biturbo</span>
+                            </div>
+                            <p>La versión más extrema y ligera de la serie Sports de McLaren.</p>
+                            <a href="#contacto" class="btn" style="margin-top: 15px; display: inline-block;">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Página McLaren Grand Tourer -->
+    <div id="mclaren-gt" class="category-page">
+        <section class="vehicles">
+            <div class="container">
+                <a href="#" class="back-btn" onclick="showPage('inicio')"><i class="fas fa-arrow-left"></i> Volver al Inicio</a>
+                <h2 class="category-title">McLaren - Grand Tourer</h2>
+                
+                <div class="vehicles-grid">
+                    <!-- McLaren GT -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="McLaren GT">
+                        </div>
+                        <div class="vehicle-info">
+                            <h3>McLaren GT</h3>
+                            <div class="price">$210,000</div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 326 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 620 CV</span>
+                                <span><i class="fas fa-car"></i> Grand Tourer</span>
+                            </div>
+                            <p>El Grand Tourer más ligero de su categoría, diseñado para largos viajes.</p>
+                            <a href="#contacto" class="btn" style="margin-top: 15px; display: inline-block;">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Página Motos -->
+    <div id="motos" class="category-page">
+        <section class="vehicles">
+            <div class="container">
+                <a href="#" class="back-btn" onclick="showPage('inicio')"><i class="fas fa-arrow-left"></i> Volver al Inicio</a>
+                <div class="section-title">
+                    <h2>Motos de Alta Gama</h2>
+                    <p>Las motos más exclusivas y tecnológicas del mercado</p>
+                </div>
+                
+                <div class="vehicles-grid">
+                    <!-- Ducati Streetfighter V4 -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80" alt="Ducati Streetfighter V4">
+                        </div>
+                        <div class="vehicle-info">
+                            <h3>Ducati Streetfighter V4</h3>
+                            <div class="price">$24,000</div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 290 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 208 CV</span>
+                                <span><i class="fas fa-motorcycle"></i> Naked</span>
+                            </div>
+                            <p>La naked más potente de Ducati, con tecnología derivada de MotoGP.</p>
+                            <a href="#contacto" class="btn" style="margin-top: 15px; display: inline-block;">Consultar</a>
+                        </div>
+                    </div>
+                    
+                    <!-- BMW M 1000 RR -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80" alt="BMW M 1000 RR">
+                        </div>
+                        <div class="vehicle-info">
+                            <h3>BMW M 1000 RR</h3>
+                            <div class="price">$32,000</div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 314 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 212 CV</span>
+                                <span><i class="fas fa-motorcycle"></i> Deportiva</span>
+                            </div>
+                            <p>La primera motocicleta desarrollada por BMW M GmbH.</p>
+                            <a href="#contacto" class="btn" style="margin-top: 15px; display: inline-block;">Consultar</a>
+                        </div>
+                    </div>
+
+                    <!-- MV Agusta Brutale 1000 RR -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80" alt="MV Agusta Brutale 1000 RR">
+                        </div>
+                        <div class="vehicle-info">
+                            <h3>MV Agusta Brutale 1000 RR</h3>
+                            <div class="price">$38,000</div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 300 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 208 CV</span>
+                                <span><i class="fas fa-motorcycle"></i> Naked</span>
+                            </div>
+                            <p>La naked más exclusiva y tecnológicamente avanzada de MV Agusta.</p>
+                            <a href="#contacto" class="btn" style="margin-top: 15px; display: inline-block;">Consultar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Página Ofertas -->
+    <div id="ofertas" class="category-page">
+        <section class="offers">
+            <div class="container">
+                <a href="#" class="back-btn" onclick="showPage('inicio')"><i class="fas fa-arrow-left"></i> Volver al Inicio</a>
+                <div class="section-title">
+                    <h2>Ofertas Especiales</h2>
+                    <p>Descuentos exclusivos en modelos seleccionados</p>
+                </div>
+                
+                <div class="vehicles-grid">
+                    <!-- Porsche 911 Oferta -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Porsche 911">
+                        </div>
+                        <div class="vehicle-info">
+                            <div class="offer-badge">15% DESCUENTO</div>
+                            <h3>Porsche 911 Turbo S</h3>
+                            <div class="price">$216,000 <span style="text-decoration: line-through; color: var(--gray); font-size: 16px; margin-left: 10px;">$254,000</span></div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 330 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 650 CV</span>
+                                <span><i class="fas fa-car"></i> Bóxer Biturbo</span>
+                            </div>
+                            <p>Oferta limitada por tiempo. El 911 más potente de la historia.</p>
+                            <a href="#contacto" class="btn" style="margin-top: 15px; display: inline-block;">Aprovechar Oferta</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Aston Martin Oferta -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Aston Martin">
+                        </div>
+                        <div class="vehicle-info">
+                            <div class="offer-badge">10% DESCUENTO</div>
+                            <h3>Aston Martin DBS</h3>
+                            <div class="price">$325,000 <span style="text-decoration: line-through; color: var(--gray); font-size: 16px; margin-left: 10px;">$361,000</span></div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 340 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 725 CV</span>
+                                <span><i class="fas fa-car"></i> V12 Twin-Turbo</span>
+                            </div>
+                            <p>Elegante grand tourer con descuento especial por lanzamiento.</p>
+                            <a href="#contacto" class="btn" style="margin-top: 15px; display: inline-block;">Aprovechar Oferta</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Página Nuevos Lanzamientos -->
+    <div id="nuevos" class="category-page">
+        <section class="vehicles">
+            <div class="container">
+                <a href="#" class="back-btn" onclick="showPage('inicio')"><i class="fas fa-arrow-left"></i> Volver al Inicio</a>
+                <div class="section-title">
+                    <h2>Nuevos Lanzamientos</h2>
+                    <p>Los modelos más recientes en el mercado</p>
+                </div>
+                
+                <div class="vehicles-grid">
+                    <!-- Bugatti Chiron -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1553440569-bcc63803a83d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Bugatti Chiron">
+                        </div>
+                        <div class="vehicle-info">
+                            <h3>Bugatti Chiron Super Sport</h3>
+                            <div class="price">$3,900,000</div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 440 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 1600 CV</span>
+                                <span><i class="fas fa-car"></i> W16</span>
+                            </div>
+                            <p>La máxima expresión de velocidad y lujo, con motor W16 de 8.0 litros.</p>
+                            <a href="#contacto" class="btn" style="margin-top: 15px; display: inline-block;">Reservar</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Ferrari Daytona SP3 -->
+                    <div class="vehicle-card">
+                        <div class="vehicle-image">
+                            <img src="https://images.unsplash.com/photo-1544636331-e26879cd4d9b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Ferrari Daytona SP3">
+                        </div>
+                        <div class="vehicle-info">
+                            <h3>Ferrari Daytona SP3</h3>
+                            <div class="price">$2,200,000</div>
+                            <div class="features">
+                                <span><i class="fas fa-tachometer-alt"></i> 340 km/h</span>
+                                <span><i class="fas fa-bolt"></i> 840 CV</span>
+                                <span><i class="fas fa-car"></i> V12</span>
+                            </div>
+                            <p>Homenaje a los deportivos que dominaron Daytona en los años 60.</p>
+                            <a href="#contacto" class="btn" style="margin-top: 15px; display: inline-block;">Reservar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Pie de página -->
+    <footer id="contacto">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Luxury Motors</h3>
+                    <p>Líder en venta de vehículos de alta gama con más de 20 años de experiencia en el mercado de lujo.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#" onclick="showPage('inicio')">Inicio</a></li>
+                        <li><a href="#" onclick="showPage('ferrari-deportivos')">Ferrari Deportivos</a></li>
+                        <li><a href="#" onclick="showPage('lamborghini-deportivos')">Lamborghini Deportivos</a></li>
+                        <li><a href="#" onclick="showPage('motos')">Motos</a></li>
+                        <li><a href="#" onclick="showPage('ofertas')">Ofertas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contacto</h3>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +34 900 123 456</li>
+                        <li><i class="fas fa-envelope"></i> info@luxurymotors.com</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Madrid, España</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Luxury Motors. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript para mostrar páginas específicas
+        function showPage(pageId) {
+            // Ocultar todas las páginas
+            document.querySelectorAll('.category-page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Mostrar la página solicitada
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            return false;
+        }
+
+        // JavaScript para el menú móvil
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
